@@ -25,8 +25,7 @@ Apart from above criterias, we have two rules as well, which are given below:
 ###  Running Micro Service  .
   
   
-	1.	Move to the ${PROJECT_CHECKOUT_FOLDER}\GroceryStoreApplication\target .  
-  
+	1. Move to the ${PROJECT_CHECKOUT_FOLDER}\GroceryStoreApplication\target .    
 	2. Execute below command: ```java -jar GroceryStoreApplication-0.0.1-SNAPSHOT```  
 	Note:- The version of the snapshot may vary.  
   
@@ -38,17 +37,16 @@ Apart from above criterias, we have two rules as well, which are given below:
 	* Maven 3.x  
 	* Spring framework.  
 	* Git  
-	* For Static Code Analysis, we use Sonar for generating reports  
+	* Sonar for generating reports  
 	* Jacoco is used for code coverage.  
   
   
 ## Running Sonar Report  
   
-	  1. Import project on IDE (not mandatory) / Build the project locally.  
-    2. Start Sonar Qube Server
+	1. Import project on IDE (not mandatory) / Build the project locally.  
+    2. Start Sonar Server
     3. Run 'mvn clean verify sonar:sonar' command
-    4. Look in target/reports for jacoco reports
-    5. Check Sonar Qube dashboard for Overall Summary (default localhost:9000)
+    4. Look in target/jacoco-report for jacoco reports
+    5. Check SonarQube dashboard for Complete Summary (default localhost:9000)
     
     *** Attached PDF of Latest Sonar Qube Summary inside SonarReports Folder ***
- 

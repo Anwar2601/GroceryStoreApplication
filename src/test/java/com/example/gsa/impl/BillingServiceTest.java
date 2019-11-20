@@ -39,7 +39,7 @@ public class BillingServiceTest {
         Item item = new Item(101,"ItemName", ItemTypeEnum.GROCERY, 100, 1, 100);
         items.add(item);
         Bill bill = new Bill(UUID.randomUUID(), UUID.randomUUID(), 100.0, items);
-        double payableAmount = billingService.processBills(bill);
+        double payableAmount = billingService.processBill(bill);
         Assert.isTrue(payableAmount==95.0,"Test Failed");
     }
 
@@ -55,7 +55,7 @@ public class BillingServiceTest {
         item = new Item(102,"ItemName2", ItemTypeEnum.PERSONALCARE, 100, 1, 100);
         items.add(item);
         Bill bill = new Bill(UUID.randomUUID(), UUID.randomUUID(), 200.0, items);
-        double payableAmount = billingService.processBills(bill);
+        double payableAmount = billingService.processBill(bill);
         Assert.isTrue(payableAmount==165.0,"Test Failed");
     }
 }

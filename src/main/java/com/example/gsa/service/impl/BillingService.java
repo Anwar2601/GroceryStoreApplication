@@ -10,7 +10,7 @@ public class BillingService {
     @Autowired
     private DiscountService discountService;
 
-    public double processBills(Bill bill){
+    public double processBill(Bill bill){
         double discount = discountService.getDiscount(bill);
         return bill.getAmount()-discount;
     }

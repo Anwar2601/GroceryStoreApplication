@@ -18,4 +18,8 @@ public class UserServiceImpl implements UserService {
     public Optional<User> getUser(UUID empId) {
         return userRepository.getUser(empId);
     }
+
+    public User saveUser(User user) {
+        return userRepository.saveUser(user);
+    }
 }

@@ -11,6 +11,8 @@ public interface UserService {
 
     Optional<User> getUser(UUID empId);
 
+    User saveUser(User user);
+
     default boolean checkUserJoiningDate(Optional<User> user) {
         if(user.isPresent())
         {
