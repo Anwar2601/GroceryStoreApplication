@@ -29,9 +29,6 @@ public class DiscountServiceTest {
     @Mock
     private UserService userServiceImpl;
 
-    /**
-     * Before Method to provide common Mocks
-     */
     @Test
     public void testForEmployee(){
         Optional<User> user = Optional.of(new User(UUID.randomUUID(),"","", LocalDate.now(), UserTypeEnum.EMPLOYEE));
@@ -46,9 +43,6 @@ public class DiscountServiceTest {
         Assert.isTrue(discount==5.0,"Test Failed");
     }
 
-    /**
-     * Before Method to provide common Mocks
-     */
     @Test
     public void testForEmployeeWithoutGroceryItems(){
         Optional<User> user = Optional.of(new User(UUID.randomUUID(),"","", LocalDate.now(), UserTypeEnum.EMPLOYEE));
@@ -63,9 +57,6 @@ public class DiscountServiceTest {
         Assert.isTrue(discount==35.0,"Test Failed");
     }
 
-    /**
-     * Before Method to provide common Mocks
-     */
     @Test
     public void testForCustomer(){
         Optional<User> user = Optional.of(new User(UUID.randomUUID(),"","", LocalDate.now(), UserTypeEnum.CUSTOMER));
@@ -80,9 +71,6 @@ public class DiscountServiceTest {
         Assert.isTrue(discount==15.0,"Test Failed");
     }
 
-    /**
-     * Before Method to provide common Mocks
-     */
     @Test
     public void testForOldCustomer(){
         Mockito.when(userServiceImpl.getUser(Mockito.any())).thenReturn(Optional.empty());

@@ -29,9 +29,6 @@ public class BillingServiceTest {
     @InjectMocks
     private BillingService billingService;
 
-    /**
-     * Testing for One Grocery Item with User who is an Employee
-     */
     @Test
     void testForOneGroceryItemWithUserAsEmployee(){
         Mockito.when(discountService.getDiscount(Mockito.any())).thenReturn(5.0);
@@ -43,9 +40,6 @@ public class BillingServiceTest {
         Assert.isTrue(payableAmount==95.0,"Test Failed");
     }
 
-    /**
-     * Testing for One Grocery Item with User who is an Employee
-     */
     @Test
     void testForOneMultipleItemWithUserAsEmployee(){
         Mockito.when(discountService.getDiscount(Mockito.any())).thenReturn(35.0);

@@ -10,13 +10,27 @@ import java.util.UUID;
 
 @Repository
 public class UserRepository {
-
+    /**
+     * Map of Users to Simulate DataBase Table
+     */
     private Map<UUID, User> users = new HashMap<>();
 
+    /**
+     * Get User From Database
+     *
+     * @param userId
+     * @return
+     */
     public Optional<User> getUser(UUID userId){
         return Optional.ofNullable(users.get(userId));
     }
 
+    /**
+     * Save User in Database
+     *
+     * @param user
+     * @return
+     */
     public User saveUser(User user){
         return users.put(user.getUserId(),user);
     }

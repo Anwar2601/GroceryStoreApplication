@@ -7,12 +7,23 @@ import org.springframework.stereotype.Service;
 @Service
 <span class="fc" id="L8">public class BillingService {</span>
 
+    /**
+     * discount Service to get discount amount.
+     */
     @Autowired
     private DiscountService discountService;
 
-    public double processBills(Bill bill){
-<span class="fc" id="L14">        double discount = discountService.getDiscount(bill);</span>
-<span class="fc" id="L15">        return bill.getAmount()-discount;</span>
+    /**
+     * processBill to get discount from Discount Service
+     * and calculate amount payable
+     *
+     * @param bill
+     * @return
+     */
+    public double processBill(Bill bill){
+<span class="fc" id="L24">        double discount = discountService.getDiscount(bill);</span>
+<span class="fc" id="L25">        double amountPayable = bill.getAmount() - discount;</span>
+<span class="fc" id="L26">        return amountPayable;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.0.201801022044</span></div></body></html>

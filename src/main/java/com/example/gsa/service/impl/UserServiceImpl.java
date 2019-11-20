@@ -12,13 +12,29 @@ import java.util.UUID;
 @Service
 public class UserServiceImpl implements UserService {
 
+    /**
+     * User Repository to interact with
+     * Database for User CRUD.
+     */
     @Autowired
     private UserRepository userRepository;
 
+    /**
+     * Get User from DB for given userId.
+     *
+     * @param empId
+     * @return
+     */
     public Optional<User> getUser(UUID empId) {
         return userRepository.getUser(empId);
     }
 
+    /**
+     * Save given User Object in DB.
+     *
+     * @param user
+     * @return
+     */
     public User saveUser(User user) {
         return userRepository.saveUser(user);
     }

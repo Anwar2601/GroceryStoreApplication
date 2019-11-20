@@ -9,19 +9,46 @@ import java.util.UUID;
 
 public interface UserService {
 
+    /**
+     * Abstract Method for Get User from DB
+     *
+     * @param empId
+     * @return
+     */
     Optional&lt;User&gt; getUser(UUID empId);
 
+    /**
+     * Abstract Method for Save User in DB
+     *
+     * @param user
+     * @return
+     */
+    User saveUser(User user);
+
+    /**
+     * Check if User has been affialiated
+     * to the store for 2 years or more.
+     *
+     * @param user
+     * @return
+     */
     default boolean checkUserJoiningDate(Optional&lt;User&gt; user) {
-<span class="pc bpc" id="L15" title="1 of 2 branches missed.">        if(user.isPresent())</span>
+<span class="pc bpc" id="L36" title="1 of 2 branches missed.">        if(user.isPresent())</span>
         {
-<span class="fc" id="L17">            LocalDate joiningDate = user.get().getJoiningDate();</span>
-<span class="pc bpc" id="L18" title="1 of 4 branches missed.">            return joiningDate.plusYears(2).isBefore(LocalDate.now()) || joiningDate.plusYears(2).isEqual(LocalDate.now());</span>
+<span class="fc" id="L38">            LocalDate joiningDate = user.get().getJoiningDate();</span>
+<span class="pc bpc" id="L39" title="1 of 4 branches missed.">            return joiningDate.plusYears(2).isBefore(LocalDate.now()) || joiningDate.plusYears(2).isEqual(LocalDate.now());</span>
         }
-<span class="nc" id="L20">        return Boolean.FALSE;</span>
+<span class="nc" id="L41">        return Boolean.FALSE;</span>
     }
 
+    /**
+     * Check if User is Employee or Customer
+     *
+     * @param user
+     * @return
+     */
     default boolean checkUserType(Optional&lt;User&gt; user) {
-<span class="pc bpc" id="L24" title="1 of 4 branches missed.">        return (user.isPresent()&amp;&amp;user.get().getUserType().equals(UserTypeEnum.EMPLOYEE));</span>
+<span class="pc bpc" id="L51" title="1 of 4 branches missed.">        return (user.isPresent()&amp;&amp;user.get().getUserType().equals(UserTypeEnum.EMPLOYEE));</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.0.201801022044</span></div></body></html>

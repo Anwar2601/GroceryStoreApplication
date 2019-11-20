@@ -12,11 +12,31 @@ import java.util.UUID;
 @Service
 <span class="fc" id="L13">public class UserServiceImpl implements UserService {</span>
 
+    /**
+     * User Repository to interact with
+     * Database for User CRUD.
+     */
     @Autowired
     private UserRepository userRepository;
 
+    /**
+     * Get User from DB for given userId.
+     *
+     * @param empId
+     * @return
+     */
     public Optional&lt;User&gt; getUser(UUID empId) {
-<span class="fc" id="L19">        return userRepository.getUser(empId);</span>
+<span class="fc" id="L29">        return userRepository.getUser(empId);</span>
+    }
+
+    /**
+     * Save given User Object in DB.
+     *
+     * @param user
+     * @return
+     */
+    public User saveUser(User user) {
+<span class="nc" id="L39">        return userRepository.saveUser(user);</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.0.201801022044</span></div></body></html>

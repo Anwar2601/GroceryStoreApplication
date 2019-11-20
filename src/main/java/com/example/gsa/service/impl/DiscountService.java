@@ -14,9 +14,20 @@ import java.util.Optional;
 @Service
 public class DiscountService {
 
+    /**
+     * User Service to get User Object
+     */
     @Autowired
     private UserService userService;
 
+    /**
+     *  getDiscount to find
+     *  applicable discount rate
+     *  using given business criteria.
+     *
+     * @param bill
+     * @return
+     */
     public double getDiscount(Bill bill) {
         Optional<User> user = userService.getUser(bill.getUserId());
         double discount=0.0;
@@ -29,6 +40,14 @@ public class DiscountService {
         return calculateDiscount(bill,discount)+calculateDiscount(bill);
     }
 
+    /**
+     * Calculate Discounted Amount for
+     * Percentage Based Criteria.
+     *
+     * @param bill
+     * @param discountRate
+     * @return
+     */
     private double calculateDiscount(Bill bill, double discountRate) {
         return bill.getItems().stream()
                 .filter(this::filterGroceryItem)
@@ -37,11 +56,26 @@ public class DiscountService {
                 .sum();
     }
 
+    /**
+     * Calculate Discount Amount
+     * for Value Based Criteria.
+     *
+     * @param bill
+     * @return
+     */
     private double calculateDiscount(Bill bill) {
         double amount = bill.getAmount();
         return (amount/100)*5;
     }
 
+    /**
+     * Filter out Grocery Items.
+     * Used to seperate Percentage Based Criteria
+     * from others.
+     *
+     * @param item
+     * @return
+     */
     private boolean filterGroceryItem(Item item) {
         return !ItemTypeEnum.GROCERY.equals(item.getItemType());
     }

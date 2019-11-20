@@ -10,15 +10,29 @@ import java.util.UUID;
 
 @Repository
 <span class="fc" id="L12">public class UserRepository {</span>
+    /**
+     * Map of Users to Simulate DataBase Table
+     */
+<span class="fc" id="L16">    private Map&lt;UUID, User&gt; users = new HashMap&lt;&gt;();</span>
 
-<span class="fc" id="L14">    private Map&lt;UUID, User&gt; users = new HashMap&lt;&gt;();</span>
-
+    /**
+     * Get User From Database
+     *
+     * @param userId
+     * @return
+     */
     public Optional&lt;User&gt; getUser(UUID userId){
-<span class="fc" id="L17">        return Optional.ofNullable(users.get(userId));</span>
+<span class="fc" id="L25">        return Optional.ofNullable(users.get(userId));</span>
     }
 
+    /**
+     * Save User in Database
+     *
+     * @param user
+     * @return
+     */
     public User saveUser(User user){
-<span class="fc" id="L21">        return users.put(user.getUserId(),user);</span>
+<span class="fc" id="L35">        return users.put(user.getUserId(),user);</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.0.201801022044</span></div></body></html>
