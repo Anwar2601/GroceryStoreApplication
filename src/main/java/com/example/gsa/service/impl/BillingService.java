@@ -1,8 +1,14 @@
 package com.example.gsa.service.impl;
 
+import com.example.gsa.factory.UserFactory;
 import com.example.gsa.models.Bill;
+import com.example.gsa.models.User;
+import com.example.gsa.respositories.UserRepository;
+import com.example.gsa.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class BillingService {
@@ -11,7 +17,13 @@ public class BillingService {
      * discount Service to get discount amount.
      */
     @Autowired
-    private DiscountService discountService;
+    private UserFactory userFactory;
+
+    /**
+     * User Repository to get User From DB
+     */
+    @Autowired
+    private UserRepository userRepository;
 
     /**
      * processBill to get discount from Discount Service
@@ -21,7 +33,9 @@ public class BillingService {
      * @return
      */
     public double processBill(Bill bill){
-        double discount = discountService.getDiscount(bill);
+        Optional<User> user = userRepository.getUser(bill.getUserId());
+        UserService userService = userFactory.getUserService(user);
+        double discount = userService.calculateDiscount(bill);
         double amountPayable = bill.getAmount() - discount;
         return amountPayable;
     }

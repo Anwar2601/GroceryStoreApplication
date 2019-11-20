@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UserFactory.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">GroceryStoreApplication</a> &gt; <a href="index.source.html" class="el_package">com.example.gsa.factory</a> &gt; <span class="el_source">UserFactory.java</span></div><h1>UserFactory.java</h1><pre class="source lang-java linenums">package com.example.gsa.factory;
+
+import com.example.gsa.enums.UserTypeEnum;
+import com.example.gsa.models.User;
+import com.example.gsa.service.UserService;
+import com.example.gsa.service.impl.AffiliateServiceImpl;
+import com.example.gsa.service.impl.CustomerServiceImpl;
+import com.example.gsa.service.impl.EmployeeServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import java.time.LocalDate;
+import java.util.Optional;
+
+@Component
+<span class="fc" id="L16">public class UserFactory {</span>
+
+    @Autowired
+    private AffiliateServiceImpl affiliateServiceImpl;
+
+    @Autowired
+    private CustomerServiceImpl customerServiceImpl;
+
+    @Autowired
+    private EmployeeServiceImpl employeeServiceImpl;
+
+    /**
+     * Factory to get the User Service Impl for Discount Calculations
+     *
+     * @param user
+     * @return
+     */
+    public UserService getUserService(Optional&lt;User&gt; user){
+<span class="fc" id="L34">        UserService userService = null;</span>
+<span class="fc" id="L35">        double discount = 0.0;</span>
+<span class="fc bfc" id="L36" title="All 2 branches covered.">        if(checkUserIsAnEmployee(user))</span>
+<span class="fc" id="L37">            userService = employeeServiceImpl;</span>
+<span class="pc bpc" id="L38" title="1 of 4 branches missed.">        else if(user.isPresent()&amp;&amp;user.get().getUserType().equals(UserTypeEnum.AFFILIATE))</span>
+<span class="fc" id="L39">            userService = affiliateServiceImpl;</span>
+<span class="pc bpc" id="L40" title="1 of 2 branches missed.">        else if(checkUserJoiningDate(user))</span>
+<span class="fc" id="L41">            userService = customerServiceImpl;</span>
+<span class="fc" id="L42">        return userService;</span>
+    }
+
+    /**
+     * Check if User has been affialiated
+     * to the store for 2 years or more.
+     *
+     * @param user
+     * @return
+     */
+    private boolean checkUserJoiningDate(Optional&lt;User&gt; user) {
+<span class="pc bpc" id="L53" title="1 of 2 branches missed.">        if(user.isPresent())</span>
+        {
+<span class="fc" id="L55">            LocalDate joiningDate = user.get().getJoiningDate();</span>
+<span class="pc bpc" id="L56" title="3 of 4 branches missed.">            return joiningDate.plusYears(2).isBefore(LocalDate.now()) || joiningDate.plusYears(2).isEqual(LocalDate.now());</span>
+        }
+<span class="nc" id="L58">        return Boolean.FALSE;</span>
+    }
+
+    /**
+     * Check if User is Employee or Customer
+     *
+     * @param user
+     * @return
+     */
+    private boolean checkUserIsAnEmployee(Optional&lt;User&gt; user) {
+<span class="pc bpc" id="L68" title="1 of 4 branches missed.">        return (user.isPresent()&amp;&amp;user.get().getUserType().equals(UserTypeEnum.EMPLOYEE));</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.0.201801022044</span></div></body></html>
